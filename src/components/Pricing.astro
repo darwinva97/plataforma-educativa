@@ -1,0 +1,159 @@
+---
+const plans = [
+  {
+    name: 'Gratis',
+    price: 'S/ 0',
+    period: 'para siempre',
+    description: 'Perfecto para empezar tu viaje en programacion.',
+    features: [
+      '5 cursos gratuitos completos',
+      'Comunidad basica',
+      'Certificado digital',
+      'Acceso a foros',
+      'Recursos descargables',
+    ],
+    cta: 'Empezar Gratis',
+    popular: false,
+    style: '',
+  },
+  {
+    name: 'Pro',
+    price: 'S/ 49',
+    period: '/mes',
+    description: 'Para quienes quieren acelerar su carrera.',
+    features: [
+      'Todos los cursos (+120)',
+      'Proyectos guiados',
+      'Mentorias grupales',
+      'Certificados verificables',
+      'Comunidad Pro exclusiva',
+      'Rutas de aprendizaje',
+      'Soporte prioritario',
+    ],
+    cta: 'Comenzar Pro',
+    popular: true,
+    style: '',
+  },
+  {
+    name: 'Teams',
+    price: 'S/ 199',
+    period: '/mes',
+    description: 'Ideal para empresas y equipos de desarrollo.',
+    features: [
+      'Todo de Pro incluido',
+      'Dashboard de equipo',
+      'Reportes de progreso',
+      'Soporte prioritario 24/7',
+      'Cursos personalizados',
+      'Facturacion empresarial',
+      'Onboarding dedicado',
+    ],
+    cta: 'Contactar Ventas',
+    popular: false,
+    style: '',
+  },
+];
+---
+<section class="section section-alt" id="precios">
+  <div class="container">
+    <div class="section-header">
+      <h2>Planes y <span class="text-gradient">Precios</span></h2>
+      <p>Elige el plan que mejor se adapte a tus objetivos. Cancela cuando quieras.</p>
+    </div>
+    <div class="pricing-grid">
+      {plans.map(plan => (
+        <div class={`pricing-card ${plan.popular ? 'popular' : ''}`}>
+          {plan.popular && <div class="popular-badge">Mas Popular</div>}
+          <h3 class="plan-name">{plan.name}</h3>
+          <div class="plan-price">
+            <span class="price">{plan.price}</span>
+            <span class="period">{plan.period}</span>
+          </div>
+          <p class="plan-desc">{plan.description}</p>
+          <ul class="plan-features">
+            {plan.features.map(f => (
+              <li>{f}</li>
+            ))}
+          </ul>
+          <a href="/cursos" class={`btn ${plan.popular ? 'btn-primary' : 'btn-secondary'}`} style="width:100%;justify-content:center;">{plan.cta}</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .pricing-card {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: var(--transition);
+  }
+  .pricing-card:hover { box-shadow: var(--shadow-lg); }
+  .pricing-card.popular {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.03);
+  }
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    padding: 0.3rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .plan-name {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+  .plan-price {
+    margin-bottom: 0.5rem;
+  }
+  .price {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .period { color: var(--text-light); font-size: 0.9rem; }
+  .plan-desc {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .plan-features li {
+    font-size: 0.9rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text);
+  }
+  .plan-features li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: 700;
+  }
+</style>

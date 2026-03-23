@@ -1,0 +1,120 @@
+---
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/cursos', label: 'Cursos' },
+  { href: '/#rutas', label: 'Rutas de Aprendizaje' },
+  { href: '/#blog', label: 'Blog' },
+  { href: '/#comunidad', label: 'Comunidad' },
+];
+---
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">&lt;/&gt;</span>
+      <span class="logo-text">CodeMaster</span>
+    </a>
+    <nav class="nav hide-mobile" id="nav">
+      {navLinks.map(link => (
+        <a href={link.href} class="nav-link">{link.label}</a>
+      ))}
+    </nav>
+    <a href="/cursos" class="btn btn-primary btn-sm hide-mobile">Empieza Gratis</a>
+    <button class="hamburger hide-desktop" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu hide-desktop" id="mobile-menu">
+    <nav class="mobile-nav">
+      {navLinks.map(link => (
+        <a href={link.href} class="mobile-link">{link.label}</a>
+      ))}
+      <a href="/cursos" class="btn btn-primary" style="margin-top:1rem;width:100%;justify-content:center;">Empieza Gratis</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(226,232,240,0.5);
+    transition: var(--transition);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 2rem;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--text);
+  }
+  .logo-icon {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+  }
+  .nav { display: flex; gap: 0.25rem; }
+  .nav-link {
+    padding: 0.5rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+  }
+  .nav-link:hover { color: var(--primary); background: #f1f5f9; }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    width: 24px;
+    height: 2.5px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+  .mobile-menu {
+    display: none;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-nav { display: flex; flex-direction: column; gap: 0.25rem; }
+  .mobile-link {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    color: var(--text);
+  }
+  .mobile-link:hover { background: var(--bg-alt); color: var(--primary); }
+</style>
+
+<script>
+  document.getElementById('hamburger')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('open');
+  });
+</script>

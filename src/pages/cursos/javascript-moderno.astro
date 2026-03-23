@@ -1,0 +1,305 @@
+---
+import Page from '../../layouts/Page.astro';
+
+const course = {
+  title: 'JavaScript Moderno desde Cero',
+  description: 'Domina JavaScript desde los fundamentos hasta conceptos avanzados como async/await, closures, prototipos y patrones de diseno. Incluye 15+ proyectos practicos.',
+  instructor: { name: 'Carlos Mendoza', specialty: 'Senior Frontend Engineer - 10 anos de experiencia', bio: 'Carlos es Senior Frontend Engineer con mas de 10 anos de experiencia en empresas como Globant y MercadoLibre. Apasionado por ensenar JavaScript de forma practica y accesible. Ha formado a mas de 4,500 estudiantes.', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face' },
+  rating: 4.9, students: 3420, duration: '40 horas', lessons: 85, level: 'Principiante', price: 'Gratis', updated: 'Marzo 2026',
+};
+
+const learnings = [
+  'Fundamentos solidos de JavaScript: variables, tipos, operadores',
+  'Funciones, closures, scope y contexto de ejecucion',
+  'Manipulacion del DOM y manejo de eventos',
+  'Programacion asincrona: Promises, async/await, fetch API',
+  'ES6+: destructuring, spread, modules, clases',
+  'Manejo de errores y debugging profesional',
+  'Patrones de diseno en JavaScript',
+  'Construccion de 15+ proyectos del mundo real',
+];
+
+const modules = [
+  { title: 'Fundamentos de JavaScript', lessons: ['Variables y tipos de datos', 'Operadores y expresiones', 'Condicionales y bucles', 'Introduccion a funciones'], duration: '8 horas' },
+  { title: 'Funciones y Scope Avanzado', lessons: ['Funciones de primera clase', 'Closures y lexical scope', 'Callbacks y funciones de orden superior', 'Arrow functions y this'], duration: '8 horas' },
+  { title: 'DOM y Eventos', lessons: ['Seleccion y manipulacion del DOM', 'Event listeners y delegacion', 'Formularios y validacion', 'Proyecto: App de Tareas'], duration: '8 horas' },
+  { title: 'JavaScript Asincrono', lessons: ['Callbacks y problemas', 'Promises desde cero', 'Async/Await', 'Fetch API y consumo de APIs', 'Proyecto: App del Clima'], duration: '8 horas' },
+  { title: 'ES6+ y Patrones Modernos', lessons: ['Destructuring y spread', 'Modulos import/export', 'Clases y herencia', 'Patrones de diseno', 'Proyecto Final: E-commerce'], duration: '8 horas' },
+];
+
+const reviews = [
+  { name: 'Pedro Vargas', rating: 5, text: 'El mejor curso de JavaScript que he tomado. Carlos explica todo de forma muy clara y los proyectos son increibles. Lo recomiendo 100%.', date: 'Hace 2 semanas' },
+  { name: 'Laura Sanchez', rating: 5, text: 'Empece sin saber nada de programacion y ahora me siento segura escribiendo JavaScript. Los ejercicios practicos son la clave.', date: 'Hace 1 mes' },
+  { name: 'Miguel Torres', rating: 4, text: 'Excelente contenido y muy bien estructurado. Me hubiera gustado mas ejercicios de algoritmos, pero en general es fantastico.', date: 'Hace 2 meses' },
+];
+
+const relatedCourses = [
+  { title: 'React.js Completo 2026', image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=300&h=170&fit=crop', price: 'S/ 49', href: '/cursos/react-completo' },
+  { title: 'TypeScript Profesional', image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=170&fit=crop', price: 'S/ 42', href: '#' },
+  { title: 'Node.js y Express API REST', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&h=170&fit=crop', price: 'S/ 45', href: '#' },
+];
+
+const includes = ['40 horas de video HD', '85 lecciones', '15 proyectos practicos', 'Recursos descargables', 'Acceso de por vida', 'Certificado de completado', 'Soporte en foros'];
+---
+<Page title={`${course.title} - CodeMaster`}>
+  <section class="course-hero">
+    <div class="container course-hero-inner">
+      <div class="course-hero-content">
+        <div class="breadcrumb"><a href="/">Inicio</a> / <a href="/cursos">Cursos</a> / <span>JavaScript Moderno</span></div>
+        <span class="tag tag-blue">Desarrollo Web</span>
+        <h1>{course.title}</h1>
+        <p class="course-hero-desc">{course.description}</p>
+        <div class="course-hero-meta">
+          <span class="stars">{'★'.repeat(5)}</span>
+          <span class="rating-val">{course.rating}</span>
+          <span>({course.students.toLocaleString()} estudiantes)</span>
+          <span>|</span>
+          <span>{course.level}</span>
+          <span>|</span>
+          <span>Actualizado: {course.updated}</span>
+        </div>
+        <div class="instructor-mini">
+          <img src={course.instructor.image} alt={course.instructor.name} />
+          <div>
+            <strong>{course.instructor.name}</strong>
+            <span>{course.instructor.specialty}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container course-layout">
+      <div class="course-content">
+        <!-- What you'll learn -->
+        <div class="content-block">
+          <h2>Lo que aprenderas</h2>
+          <div class="learnings-grid">
+            {learnings.map(l => (
+              <div class="learning-item">
+                <span class="check-icon">&#10003;</span>
+                <span>{l}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Syllabus -->
+        <div class="content-block">
+          <h2>Contenido del Curso</h2>
+          <p class="syllabus-summary">{modules.length} modulos - {course.lessons} lecciones - {course.duration} de contenido</p>
+          <div class="syllabus">
+            {modules.map((mod, i) => (
+              <details class="module" open={i === 0}>
+                <summary class="module-header">
+                  <div>
+                    <strong>Modulo {i + 1}: {mod.title}</strong>
+                    <span class="module-meta">{mod.lessons.length} lecciones - {mod.duration}</span>
+                  </div>
+                </summary>
+                <ul class="module-lessons">
+                  {mod.lessons.map(lesson => (
+                    <li>
+                      <span class="lesson-icon">&#9654;</span>
+                      {lesson}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        <!-- Instructor -->
+        <div class="content-block">
+          <h2>Tu Instructor</h2>
+          <div class="instructor-full">
+            <img src={course.instructor.image} alt={course.instructor.name} />
+            <div>
+              <h3>{course.instructor.name}</h3>
+              <span class="inst-spec">{course.instructor.specialty}</span>
+              <p>{course.instructor.bio}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="content-block">
+          <h2>Opiniones de Estudiantes</h2>
+          <div class="reviews">
+            {reviews.map(r => (
+              <div class="review">
+                <div class="review-header">
+                  <strong>{r.name}</strong>
+                  <span class="stars">{'★'.repeat(r.rating)}</span>
+                  <span class="review-date">{r.date}</span>
+                </div>
+                <p>{r.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Related -->
+        <div class="content-block">
+          <h2>Cursos Relacionados</h2>
+          <div class="related-grid">
+            {relatedCourses.map(rc => (
+              <a href={rc.href} class="card related-card">
+                <div class="related-img"><img src={rc.image} alt={rc.title} loading="lazy" /></div>
+                <div class="card-body">
+                  <h4>{rc.title}</h4>
+                  <span class={`course-price ${rc.price === 'Gratis' ? 'free' : ''}`}>{rc.price}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Sidebar -->
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-price">
+            <span class="price-big free">Gratis</span>
+          </div>
+          <a href="#" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">Inscribete Ahora</a>
+          <p class="sidebar-guarantee">Acceso gratuito de por vida</p>
+          <div class="sidebar-includes">
+            <h4>Este curso incluye:</h4>
+            <ul>
+              {includes.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .course-hero {
+    padding: 8rem 0 3rem;
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+  }
+  .breadcrumb { font-size: 0.85rem; color: #64748b; margin-bottom: 1rem; }
+  .breadcrumb a { color: #94a3b8; }
+  .breadcrumb a:hover { color: #fff; }
+  .course-hero .tag { margin-bottom: 1rem; }
+  .course-hero h1 { color: #fff; margin-bottom: 1rem; font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  .course-hero-desc { color: #94a3b8; font-size: 1.1rem; max-width: 650px; margin-bottom: 1.25rem; line-height: 1.7; }
+  .course-hero-meta {
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    font-size: 0.9rem; color: #94a3b8; margin-bottom: 1.5rem;
+  }
+  .course-hero-meta .stars { color: var(--warning); }
+  .rating-val { font-weight: 700; color: var(--warning); }
+  .instructor-mini {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .instructor-mini img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  .instructor-mini strong { display: block; color: #fff; font-size: 0.95rem; }
+  .instructor-mini span { color: #94a3b8; font-size: 0.8rem; }
+
+  .course-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .course-layout { grid-template-columns: 1fr; }
+    .course-sidebar { order: -1; }
+  }
+
+  .content-block { margin-bottom: 3rem; }
+  .content-block h2 { font-size: 1.5rem; margin-bottom: 1.25rem; }
+
+  .learnings-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  @media (max-width: 600px) { .learnings-grid { grid-template-columns: 1fr; } }
+  .learning-item { display: flex; gap: 0.5rem; font-size: 0.9rem; }
+  .check-icon { color: var(--success); font-weight: 700; flex-shrink: 0; }
+
+  .syllabus-summary { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; }
+  .module {
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem; overflow: hidden;
+  }
+  .module-header {
+    padding: 1rem 1.25rem; cursor: pointer; background: var(--bg-alt);
+    list-style: none; display: flex; align-items: center;
+  }
+  .module-header::-webkit-details-marker { display: none; }
+  .module-header strong { display: block; font-size: 0.95rem; }
+  .module-meta { font-size: 0.8rem; color: var(--text-light); }
+  .module-lessons { padding: 0.75rem 1.25rem; }
+  .module-lessons li {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 0; font-size: 0.9rem; color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  .module-lessons li:last-child { border-bottom: none; }
+  .lesson-icon { color: var(--text-light); font-size: 0.65rem; }
+
+  .instructor-full {
+    display: flex; gap: 1.5rem; align-items: start;
+    padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .instructor-full img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .instructor-full h3 { margin-bottom: 0.25rem; }
+  .inst-spec { color: var(--primary-light); font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.75rem; }
+  .instructor-full p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; }
+
+  .review {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .review:last-child { border-bottom: none; }
+  .review-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .review-header .stars { font-size: 0.8rem; }
+  .review-date { color: var(--text-light); font-size: 0.8rem; }
+  .review p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; }
+
+  .related-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;
+  }
+  .related-card { }
+  .related-img { height: 130px; overflow: hidden; }
+  .related-img img { width: 100%; height: 100%; object-fit: cover; }
+  .related-card h4 { font-size: 0.95rem; margin-bottom: 0.35rem; }
+  .course-price { font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .course-price.free { color: var(--success); }
+
+  .course-sidebar { position: sticky; top: 90px; }
+  .sidebar-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.75rem;
+    box-shadow: var(--shadow-md);
+  }
+  .sidebar-price { margin-bottom: 1rem; }
+  .price-big {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2rem; font-weight: 800;
+  }
+  .price-big.free { color: var(--success); }
+  .sidebar-guarantee {
+    text-align: center; font-size: 0.8rem;
+    color: var(--text-light); margin: 0.75rem 0 1.25rem;
+  }
+  .sidebar-includes h4 { font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .sidebar-includes ul { display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-includes li {
+    font-size: 0.85rem; color: var(--text-light);
+    padding-left: 1.25rem; position: relative;
+  }
+  .sidebar-includes li::before {
+    content: '\2713'; position: absolute; left: 0;
+    color: var(--success); font-weight: 700; font-size: 0.8rem;
+  }
+</style>

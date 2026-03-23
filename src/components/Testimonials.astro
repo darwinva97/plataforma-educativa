@@ -1,0 +1,93 @@
+---
+const testimonials = [
+  {
+    quote: 'Gracias a CodeMaster pase de ser contador a desarrollador frontend en 8 meses. Los proyectos reales y la comunidad hicieron toda la diferencia. Hoy trabajo remoto para una empresa de EE.UU.',
+    name: 'Alejandro Quispe',
+    role: 'De Contador a Frontend Developer',
+    course: 'Ruta Frontend Completa',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
+  },
+  {
+    quote: 'La calidad de los cursos es impresionante. El curso de React me ayudo a conseguir mi primer trabajo como desarrolladora junior en solo 4 meses. Los mentores siempre estan disponibles.',
+    name: 'Camila Fernandez',
+    role: 'De Estudiante a React Developer',
+    course: 'React.js Completo',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+  },
+  {
+    quote: 'Los cursos de Python y Data Science cambiaron mi carrera. Ahora trabajo como analista de datos ganando el triple. La inversion se pago sola en el primer mes.',
+    name: 'Fernando Castillo',
+    role: 'De Marketing a Data Analyst',
+    course: 'Python para Data Science',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face',
+  },
+];
+---
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Lo que dicen nuestros <span class="text-gradient">Estudiantes</span></h2>
+      <p>Miles de personas ya transformaron su carrera con CodeMaster.</p>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map(t => (
+        <div class="testimonial-card">
+          <div class="stars">{'★'.repeat(t.rating)}</div>
+          <blockquote class="testimonial-quote">"{t.quote}"</blockquote>
+          <div class="testimonial-author">
+            <img src={t.image} alt={t.name} class="author-img" loading="lazy" />
+            <div>
+              <strong class="author-name">{t.name}</strong>
+              <span class="author-role">{t.role}</span>
+              <span class="author-course">{t.course}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .testimonial-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: var(--transition);
+  }
+  .testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .testimonial-card .stars { margin-bottom: 1rem; }
+  .testimonial-quote {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .author-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .author-name { display: block; font-size: 0.95rem; }
+  .author-role { display: block; font-size: 0.8rem; color: var(--primary-light); font-weight: 500; }
+  .author-course { display: block; font-size: 0.75rem; color: var(--text-light); }
+</style>

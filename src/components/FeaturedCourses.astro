@@ -1,0 +1,176 @@
+---
+const courses = [
+  {
+    title: 'JavaScript Moderno desde Cero',
+    tag: 'Desarrollo Web', tagClass: 'tag-blue',
+    instructor: 'Carlos Mendoza',
+    duration: '40 horas',
+    level: 'Principiante',
+    rating: 4.9, students: 3420,
+    price: 'Gratis',
+    image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=225&fit=crop',
+    href: '/cursos/javascript-moderno',
+  },
+  {
+    title: 'React.js Completo 2026',
+    tag: 'React', tagClass: 'tag-cyan',
+    instructor: 'Maria Gutierrez',
+    duration: '52 horas',
+    level: 'Intermedio',
+    rating: 4.8, students: 2180,
+    price: 'S/ 49',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop',
+    href: '/cursos/react-completo',
+  },
+  {
+    title: 'Python para Data Science',
+    tag: 'Python', tagClass: 'tag-green',
+    instructor: 'Diego Ramirez',
+    duration: '60 horas',
+    level: 'Intermedio',
+    rating: 4.7, students: 1890,
+    price: 'S/ 59',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=225&fit=crop',
+    href: '/cursos',
+  },
+  {
+    title: 'Node.js y Express API REST',
+    tag: 'Backend', tagClass: 'tag-purple',
+    instructor: 'Andres Torres',
+    duration: '35 horas',
+    level: 'Intermedio',
+    rating: 4.8, students: 1540,
+    price: 'S/ 45',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=225&fit=crop',
+    href: '/cursos',
+  },
+  {
+    title: 'Diseno UX/UI con Figma',
+    tag: 'Diseno', tagClass: 'tag-pink',
+    instructor: 'Valentina Rojas',
+    duration: '28 horas',
+    level: 'Principiante',
+    rating: 4.9, students: 2310,
+    price: 'S/ 39',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=225&fit=crop',
+    href: '/cursos',
+  },
+  {
+    title: 'Base de Datos SQL y NoSQL',
+    tag: 'DevOps', tagClass: 'tag-orange',
+    instructor: 'Roberto Silva',
+    duration: '32 horas',
+    level: 'Avanzado',
+    rating: 4.6, students: 980,
+    price: 'S/ 55',
+    image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=225&fit=crop',
+    href: '/cursos',
+  },
+];
+
+function renderStars(rating: number) {
+  const full = Math.floor(rating);
+  return '★'.repeat(full) + (rating % 1 >= 0.5 ? '★' : '');
+}
+---
+<section class="section" id="cursos">
+  <div class="container">
+    <div class="section-header">
+      <h2>Cursos <span class="text-gradient">Destacados</span></h2>
+      <p>Aprende las tecnologias mas demandadas del mercado con cursos practicos y actualizados.</p>
+    </div>
+    <div class="courses-grid">
+      {courses.map(course => (
+        <a href={course.href} class="card course-card">
+          <div class="course-img">
+            <img src={course.image} alt={course.title} loading="lazy" />
+            <span class={`tag ${course.tagClass} course-tag`}>{course.tag}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="course-title">{course.title}</h3>
+            <p class="course-instructor">{course.instructor}</p>
+            <div class="course-meta">
+              <span>{course.duration}</span>
+              <span>{course.level}</span>
+            </div>
+            <div class="course-footer">
+              <div class="course-rating">
+                <span class="stars">{renderStars(course.rating)}</span>
+                <span class="rating-num">{course.rating}</span>
+                <span class="student-count">({course.students.toLocaleString()})</span>
+              </div>
+              <span class={`course-price ${course.price === 'Gratis' ? 'free' : ''}`}>{course.price}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="text-center" style="margin-top:2.5rem;">
+      <a href="/cursos" class="btn btn-secondary">Ver Todos los Cursos</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .courses-grid { grid-template-columns: 1fr; }
+  }
+  .course-card { display: flex; flex-direction: column; }
+  .course-img {
+    position: relative;
+    height: 190px;
+    overflow: hidden;
+  }
+  .course-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .course-card:hover .course-img img { transform: scale(1.05); }
+  .course-tag { position: absolute; top: 0.75rem; left: 0.75rem; }
+  .course-title {
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
+  }
+  .course-instructor {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+  .course-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .course-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+  }
+  .rating-num { font-weight: 600; color: var(--text); }
+  .student-count { color: var(--text-light); font-size: 0.8rem; }
+  .course-price {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+  .course-price.free { color: var(--success); }
+</style>

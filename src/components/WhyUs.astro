@@ -1,0 +1,67 @@
+---
+const benefits = [
+  { icon: '&#x1f4bb;', title: 'Proyectos Reales', desc: 'Aprende construyendo aplicaciones del mundo real que puedes incluir en tu portafolio profesional.' },
+  { icon: '&#x1f9d1;&#x200D;&#x1f3eb;', title: 'Mentores Expertos', desc: 'Accede a sesiones con profesionales de empresas como Google, Meta y startups exitosas.' },
+  { icon: '&#x1f3c6;', title: 'Certificados', desc: 'Obtiene certificados digitales verificables que validan tus conocimientos ante empleadores.' },
+  { icon: '&#x1f465;', title: 'Comunidad Activa', desc: 'Unete a una comunidad de mas de 15,000 estudiantes. Resuelve dudas y haz networking.' },
+  { icon: '&#x23F0;', title: 'A Tu Ritmo', desc: 'Estudia cuando quieras, donde quieras. Acceso de por vida a los cursos que adquieras.' },
+  { icon: '&#x1f504;', title: 'Contenido Actualizado', desc: 'Cursos actualizados constantemente con las ultimas versiones y mejores practicas del mercado.' },
+];
+---
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Por que elegir <span class="text-gradient">CodeMaster</span></h2>
+      <p>Todo lo que necesitas para convertirte en un desarrollador profesional en un solo lugar.</p>
+    </div>
+    <div class="benefits-grid">
+      {benefits.map(b => (
+        <div class="benefit-card">
+          <span class="benefit-icon" set:html={b.icon}></span>
+          <h3>{b.title}</h3>
+          <p>{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .benefit-card {
+    padding: 2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+    background: var(--bg);
+  }
+  .benefit-card:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--bg-alt);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .benefit-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .benefit-card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+</style>

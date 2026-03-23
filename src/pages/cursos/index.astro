@@ -1,0 +1,259 @@
+---
+import Page from '../../layouts/Page.astro';
+
+const categories = ['Todos', 'Frontend', 'Backend', 'Data Science', 'Diseno', 'DevOps'];
+
+const courses = [
+  {
+    title: 'JavaScript Moderno desde Cero',
+    tag: 'Frontend', tagClass: 'tag-blue',
+    instructor: 'Carlos Mendoza', duration: '40 horas', level: 'Principiante',
+    rating: 4.9, students: 3420, price: 'Gratis',
+    description: 'Aprende JavaScript desde cero hasta nivel avanzado. Cubre ES6+, async/await, DOM, y mas.',
+    syllabus: ['Fundamentos', 'Funciones y Scope', 'DOM y Eventos', 'Async/Await', 'Proyectos'],
+    image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=225&fit=crop',
+    href: '/cursos/javascript-moderno',
+  },
+  {
+    title: 'React.js Completo 2026',
+    tag: 'Frontend', tagClass: 'tag-cyan',
+    instructor: 'Maria Gutierrez', duration: '52 horas', level: 'Intermedio',
+    rating: 4.8, students: 2180, price: 'S/ 49',
+    description: 'Domina React con hooks, context, Redux Toolkit, Next.js y patrones avanzados.',
+    syllabus: ['Componentes', 'Hooks Avanzados', 'Estado Global', 'Next.js', 'Testing'],
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop',
+    href: '/cursos/react-completo',
+  },
+  {
+    title: 'Python para Data Science',
+    tag: 'Data Science', tagClass: 'tag-green',
+    instructor: 'Diego Ramirez', duration: '60 horas', level: 'Intermedio',
+    rating: 4.7, students: 1890, price: 'S/ 59',
+    description: 'Analisis de datos, visualizacion, machine learning con Python, Pandas y Scikit-learn.',
+    syllabus: ['Python Basico', 'Pandas y NumPy', 'Visualizacion', 'Machine Learning', 'Proyectos'],
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=225&fit=crop',
+    href: '#',
+  },
+  {
+    title: 'Node.js y Express API REST',
+    tag: 'Backend', tagClass: 'tag-purple',
+    instructor: 'Andres Torres', duration: '35 horas', level: 'Intermedio',
+    rating: 4.8, students: 1540, price: 'S/ 45',
+    description: 'Construye APIs robustas con Node.js, Express, MongoDB y autenticacion JWT.',
+    syllabus: ['Node.js Core', 'Express.js', 'MongoDB', 'Auth JWT', 'Deploy'],
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=225&fit=crop',
+    href: '#',
+  },
+  {
+    title: 'Diseno UX/UI con Figma',
+    tag: 'Diseno', tagClass: 'tag-pink',
+    instructor: 'Valentina Rojas', duration: '28 horas', level: 'Principiante',
+    rating: 4.9, students: 2310, price: 'S/ 39',
+    description: 'Disena interfaces profesionales. Desde wireframes hasta prototipos interactivos en Figma.',
+    syllabus: ['Principios UX', 'Figma Basico', 'Componentes', 'Prototipos', 'Portfolio'],
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=225&fit=crop',
+    href: '#',
+  },
+  {
+    title: 'Base de Datos SQL y NoSQL',
+    tag: 'Backend', tagClass: 'tag-orange',
+    instructor: 'Roberto Silva', duration: '32 horas', level: 'Avanzado',
+    rating: 4.6, students: 980, price: 'S/ 55',
+    description: 'Domina PostgreSQL, MongoDB, Redis. Modelado de datos y optimizacion de consultas.',
+    syllabus: ['SQL Fundamentals', 'PostgreSQL', 'MongoDB', 'Redis', 'Optimizacion'],
+    image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=225&fit=crop',
+    href: '#',
+  },
+  {
+    title: 'TypeScript Profesional',
+    tag: 'Frontend', tagClass: 'tag-blue',
+    instructor: 'Carlos Mendoza', duration: '30 horas', level: 'Intermedio',
+    rating: 4.8, students: 1200, price: 'S/ 42',
+    description: 'Aprende TypeScript desde tipos basicos hasta generics, decorators y patrones avanzados.',
+    syllabus: ['Tipos Basicos', 'Interfaces', 'Generics', 'Decorators', 'Proyectos'],
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=225&fit=crop',
+    href: '#',
+  },
+  {
+    title: 'Docker y Kubernetes',
+    tag: 'DevOps', tagClass: 'tag-orange',
+    instructor: 'Andres Torres', duration: '25 horas', level: 'Avanzado',
+    rating: 4.7, students: 750, price: 'S/ 65',
+    description: 'Containeriza y despliega aplicaciones con Docker, Docker Compose y Kubernetes.',
+    syllabus: ['Docker Basico', 'Docker Compose', 'CI/CD', 'Kubernetes', 'Monitoreo'],
+    image: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=400&h=225&fit=crop',
+    href: '#',
+  },
+  {
+    title: 'HTML y CSS Moderno',
+    tag: 'Frontend', tagClass: 'tag-blue',
+    instructor: 'Valentina Rojas', duration: '22 horas', level: 'Principiante',
+    rating: 4.9, students: 4100, price: 'Gratis',
+    description: 'Desde cero hasta layouts avanzados con Flexbox, Grid y animaciones CSS modernas.',
+    syllabus: ['HTML Semantico', 'CSS Fundamentals', 'Flexbox', 'CSS Grid', 'Responsive'],
+    image: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=400&h=225&fit=crop',
+    href: '#',
+  },
+];
+
+const levels = ['Principiante', 'Intermedio', 'Avanzado'];
+const durations = ['0-20 horas', '20-40 horas', '40+ horas'];
+const prices = ['Gratis', 'De pago'];
+---
+<Page title="Cursos - CodeMaster">
+  <section class="catalog-hero">
+    <div class="container">
+      <h1>Explora Nuestros <span class="text-gradient">Cursos</span></h1>
+      <p>Mas de 120 cursos actualizados para cada nivel. Encuentra el tuyo.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container catalog-layout">
+      <aside class="sidebar hide-mobile">
+        <div class="filter-group">
+          <h4>Nivel</h4>
+          {levels.map(l => (
+            <label class="filter-check"><input type="checkbox" /> {l}</label>
+          ))}
+        </div>
+        <div class="filter-group">
+          <h4>Duracion</h4>
+          {durations.map(d => (
+            <label class="filter-check"><input type="checkbox" /> {d}</label>
+          ))}
+        </div>
+        <div class="filter-group">
+          <h4>Precio</h4>
+          {prices.map(p => (
+            <label class="filter-check"><input type="checkbox" /> {p}</label>
+          ))}
+        </div>
+      </aside>
+
+      <div class="catalog-main">
+        <div class="category-tabs">
+          {categories.map((cat, i) => (
+            <button class={`tab ${i === 0 ? 'active' : ''}`}>{cat}</button>
+          ))}
+        </div>
+
+        <div class="catalog-grid">
+          {courses.map(course => (
+            <a href={course.href} class="card course-card">
+              <div class="course-img">
+                <img src={course.image} alt={course.title} loading="lazy" />
+                <span class={`tag ${course.tagClass} course-tag`}>{course.tag}</span>
+              </div>
+              <div class="card-body">
+                <h3 class="course-title">{course.title}</h3>
+                <p class="course-desc">{course.description}</p>
+                <p class="course-instructor">{course.instructor}</p>
+                <div class="course-meta">
+                  <span>{course.duration}</span>
+                  <span>{course.level}</span>
+                </div>
+                <div class="syllabus-preview">
+                  {course.syllabus.slice(0, 3).map(s => (
+                    <span class="syllabus-item">{s}</span>
+                  ))}
+                </div>
+                <div class="course-footer">
+                  <div class="course-rating">
+                    <span class="stars">{'★'.repeat(Math.floor(course.rating))}</span>
+                    <span class="rating-num">{course.rating}</span>
+                    <span class="student-count">({course.students.toLocaleString()})</span>
+                  </div>
+                  <span class={`course-price ${course.price === 'Gratis' ? 'free' : ''}`}>{course.price}</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .catalog-hero {
+    padding: 8rem 0 3rem;
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    text-align: center;
+  }
+  .catalog-hero h1 { color: #fff; margin-bottom: 0.75rem; }
+  .catalog-hero p { color: #94a3b8; font-size: 1.1rem; }
+  .catalog-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2rem;
+  }
+  @media (max-width: 768px) {
+    .catalog-layout { grid-template-columns: 1fr; }
+  }
+  .sidebar {
+    position: sticky;
+    top: 90px;
+    align-self: start;
+  }
+  .filter-group {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .filter-group h4 { font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .filter-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0.3rem 0;
+  }
+  .category-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .tab {
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-light);
+  }
+  .tab:hover, .tab.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .course-card { display: flex; flex-direction: column; }
+  .course-img { position: relative; height: 180px; overflow: hidden; }
+  .course-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .course-card:hover .course-img img { transform: scale(1.05); }
+  .course-tag { position: absolute; top: 0.75rem; left: 0.75rem; }
+  .course-title { font-size: 1rem; margin-bottom: 0.35rem; line-height: 1.4; }
+  .course-desc { color: var(--text-light); font-size: 0.8rem; margin-bottom: 0.5rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .course-instructor { color: var(--text-light); font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .course-meta { display: flex; gap: 1rem; font-size: 0.78rem; color: var(--text-light); margin-bottom: 0.5rem; }
+  .syllabus-preview { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .syllabus-item { font-size: 0.7rem; background: var(--bg-alt); padding: 0.15rem 0.5rem; border-radius: 4px; color: var(--text-light); }
+  .course-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+  .course-rating { display: flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; }
+  .stars { color: var(--warning); }
+  .rating-num { font-weight: 600; }
+  .student-count { color: var(--text-light); font-size: 0.75rem; }
+  .course-price { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1rem; }
+  .course-price.free { color: var(--success); }
+</style>

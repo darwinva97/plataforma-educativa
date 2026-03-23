@@ -1,0 +1,129 @@
+---
+const paths = [
+  {
+    title: 'Desarrollador Frontend',
+    courses: 5, hours: 120,
+    techs: ['HTML/CSS', 'JavaScript', 'React', 'TypeScript', 'Testing'],
+    color: '#3b82f6',
+    gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
+    description: 'Domina la creacion de interfaces modernas y responsivas con las tecnologias mas usadas.',
+    icon: '&#x1f3a8;',
+  },
+  {
+    title: 'Desarrollador Backend',
+    courses: 6, hours: 150,
+    techs: ['Node.js', 'Python', 'Bases de Datos', 'APIs REST', 'Docker', 'CI/CD'],
+    color: '#7c3aed',
+    gradient: 'linear-gradient(135deg, #7c3aed, #ec4899)',
+    description: 'Construye servidores robustos, APIs escalables y domina la logica del servidor.',
+    icon: '&#x2699;&#xFE0F;',
+  },
+  {
+    title: 'Full Stack Developer',
+    courses: 10, hours: 280,
+    techs: ['Frontend Completo', 'Backend Completo', 'DevOps', 'Proyecto Final'],
+    color: '#10b981',
+    gradient: 'linear-gradient(135deg, #10b981, #3b82f6)',
+    description: 'La ruta completa para convertirte en un desarrollador integral listo para el mercado.',
+    icon: '&#x1f680;',
+  },
+];
+---
+<section class="section section-alt" id="rutas">
+  <div class="container">
+    <div class="section-header">
+      <h2>Rutas de <span class="text-gradient">Aprendizaje</span></h2>
+      <p>Sigue un camino estructurado desde cero hasta profesional con nuestras rutas guiadas.</p>
+    </div>
+    <div class="paths-grid">
+      {paths.map(path => (
+        <div class="path-card">
+          <div class="path-icon" style={`background: ${path.gradient};`}>
+            <span set:html={path.icon}></span>
+          </div>
+          <h3>{path.title}</h3>
+          <p class="path-desc">{path.description}</p>
+          <div class="path-meta">
+            <span>{path.courses} cursos</span>
+            <span>{path.hours} horas</span>
+          </div>
+          <div class="path-steps">
+            {path.techs.map((tech, i) => (
+              <div class="step">
+                <span class="step-num" style={`background: ${path.color};`}>{i + 1}</span>
+                <span class="step-text">{tech}</span>
+              </div>
+            ))}
+          </div>
+          <a href="/cursos" class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;margin-top:1.25rem;">Comenzar Ruta</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .paths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .path-card {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+  }
+  .path-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .path-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .path-card h3 { margin-bottom: 0.5rem; }
+  .path-desc {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .path-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+  }
+  .path-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-text { font-size: 0.9rem; color: var(--text); }
+</style>

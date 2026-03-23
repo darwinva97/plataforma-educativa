@@ -1,0 +1,60 @@
+---
+const stats = [
+  { number: '15,247', label: 'Estudiantes Activos', icon: '&#x1f393;' },
+  { number: '126', label: 'Cursos Disponibles', icon: '&#x1f4da;' },
+  { number: '95%', label: 'Tasa de Satisfaccion', icon: '&#11088;' },
+  { number: '89%', label: 'Consiguen Empleo', icon: '&#x1f4bc;' },
+];
+---
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      {stats.map(stat => (
+        <div class="stat-item">
+          <span class="stat-icon" set:html={stat.icon}></span>
+          <div>
+            <span class="stat-num">{stat.number}</span>
+            <span class="stat-lbl">{stat.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-bar {
+    background: var(--bg);
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 2;
+    margin-top: -1px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .stat-icon { font-size: 2rem; }
+  .stat-num {
+    display: block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .stat-lbl {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+</style>

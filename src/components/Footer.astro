@@ -1,0 +1,147 @@
+---
+const cursosLinks = [
+  { href: '/cursos/javascript-moderno', label: 'JavaScript Moderno' },
+  { href: '/cursos/react-completo', label: 'React.js Completo' },
+  { href: '/cursos', label: 'Python Data Science' },
+  { href: '/cursos', label: 'Node.js y Express' },
+  { href: '/cursos', label: 'Diseno UX/UI' },
+];
+const companyLinks = [
+  { href: '/#', label: 'Sobre Nosotros' },
+  { href: '/#', label: 'Blog' },
+  { href: '/#', label: 'Carreras' },
+  { href: '/#', label: 'Prensa' },
+  { href: '/#', label: 'Alianzas' },
+];
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <span class="logo-icon">&lt;/&gt;</span>
+          <span>CodeMaster</span>
+        </a>
+        <p>La academia de programacion lider en Latinoamerica. Aprende con proyectos reales, mentores expertos y una comunidad activa de miles de estudiantes.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Twitter">TW</a>
+          <a href="#" aria-label="LinkedIn">LN</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Cursos Populares</h4>
+        <ul>
+          {cursosLinks.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Compania</h4>
+        <ul>
+          {companyLinks.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul class="contact-list">
+          <li>hola@codemaster.com</li>
+          <li>+51 1 234 5678</li>
+          <li>Lima, Peru</li>
+          <li>Lun - Vie: 9:00 - 18:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CodeMaster. Todos los derechos reservados.</p>
+      <div class="legal-links">
+        <a href="#">Terminos de Servicio</a>
+        <a href="#">Politica de Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--text);
+    color: #cbd5e1;
+    padding: 4rem 0 0;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  .footer-brand .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .logo-icon {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+    color: #fff;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: monospace;
+  }
+  .footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .social-links { display: flex; gap: 0.75rem; }
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .social-links a:hover { background: var(--primary-light); }
+  .footer-col h4 {
+    color: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+  .footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a {
+    font-size: 0.9rem;
+    color: #94a3b8;
+  }
+  .footer-col a:hover { color: #fff; }
+  .contact-list li { font-size: 0.9rem; }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+  }
+  .legal-links { display: flex; gap: 1.5rem; }
+  .legal-links a { color: #94a3b8; }
+  .legal-links a:hover { color: #fff; }
+</style>
